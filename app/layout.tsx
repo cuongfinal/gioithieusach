@@ -11,7 +11,7 @@ const beVietnam = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Góc Sách Hay — Giới thiệu sách cho học sinh THCS",
+  title: "Tri thức từ những trang sách — Giới thiệu sách cho học sinh THCS",
   description:
     "Website giới thiệu sách hay dành cho học sinh Trung học Cơ sở. Khám phá, đọc cảm nhận và tìm hiểu về những cuốn sách tuyệt vời.",
 };

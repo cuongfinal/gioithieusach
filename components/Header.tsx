@@ -6,7 +6,7 @@ import { Colors } from "@/lib/colors";
 
 const navLinks = [
   { href: "/", label: "Trang chủ" },
-  { href: "/about", label: "Về chúng tôi" },
+  { href: "/about", label: "Đôi dòng về mình" },
 ];
 
 export default function Header() {
@@ -26,7 +26,7 @@ export default function Header() {
             className="text-xl font-bold tracking-tight"
             style={{ color: Colors.White }}
           >
-            Góc Sách Hay
+            Tri thức từ những trang sách
           </span>
         </Link>
 
@@ -40,7 +40,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-full px-5 py-2 text-sm font-medium transition-all duration-200"
+                className="rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 text-center min-w-[130px]"
                 style={{
                   color: isActive ? Colors.Primary : Colors.White,
                   backgroundColor: isActive

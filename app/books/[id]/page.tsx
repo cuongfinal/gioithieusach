@@ -20,7 +20,7 @@ export async function generateMetadata({
   const book = await getBookById(id);
   if (!book) return { title: "Không tìm thấy sách" };
   return {
-    title: `${book.title} — Góc Sách Hay`,
+    title: `${book.title} — Tri thức từ những trang sách`,
     description: book.summary,
   };
 }
@@ -201,7 +201,7 @@ export default async function BookDetailPage({
             boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
           }}
         >
-          <SectionTitle icon="💭" title="Bài cảm nhận" />
+          <SectionTitle icon="💭" title="Bài viết cảm nhận về cuốn sách" />
           <h3
             className="mb-4 text-lg font-semibold"
             style={{ color: Colors.Primary }}
@@ -218,6 +218,20 @@ export default async function BookDetailPage({
           </p>
         </section>
 
+        {/* Precontent — Thông điệp của cuốn sách */}
+        {book.review.precontent && (
+          <section
+            className="rounded-2xl p-6"
+            style={{
+              backgroundColor: Colors.Surface,
+              boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
+            }}
+          >
+            <SectionTitle icon="💡" title="Thông điệp của cuốn sách" />
+            <RichContent content={book.review.precontent} />
+          </section>
+        )}
+
         {/* Resources */}
         <section
           className="rounded-2xl p-6"
@@ -226,7 +240,7 @@ export default async function BookDetailPage({
             boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
           }}
         >
-          <SectionTitle icon="📂" title="Tài liệu đi kèm" />
+          <SectionTitle icon="📂" title="Mời các bạn tham quan kệ sách Online của mình nhé!" />
           <div className="grid gap-4 sm:grid-cols-2">
             {book.resources.map((resource, index) => (
               <ResourceLink key={index} resource={resource} />

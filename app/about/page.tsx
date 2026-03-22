@@ -3,8 +3,8 @@ import { getAboutData } from "@/lib/data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Về chúng tôi — Góc Sách Hay",
-  description: "Tìm hiểu về nhóm học sinh thực hiện dự án giới thiệu sách.",
+  title: "Đôi dòng về mình — Tri thức từ những trang sách",
+  description: "Đôi điều về tác giả thực hiện dự án giới thiệu sách.",
 };
 
 export default async function AboutPage() {
@@ -54,7 +54,7 @@ export default async function AboutPage() {
             className="mb-4 text-xl font-bold"
             style={{ color: Colors.TextPrimary }}
           >
-            Sứ mệnh của chúng tôi
+            Thông điệp gửi đến bạn
           </h2>
           <p
             className="mx-auto max-w-2xl leading-relaxed"
@@ -70,7 +70,7 @@ export default async function AboutPage() {
             className="mb-8 text-center text-2xl font-bold"
             style={{ color: Colors.TextPrimary }}
           >
-            Thành viên nhóm
+            Tác giả Blog
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
             {about.team.map((member, index) => {

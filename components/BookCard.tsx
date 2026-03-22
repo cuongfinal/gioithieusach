@@ -4,6 +4,17 @@ import Link from "next/link";
 import { Colors } from "@/lib/colors";
 import type { Book } from "@/lib/types";
 
+/** Strip custom markup (bold, italic, color tags, image refs) to plain text */
+function stripMarkup(text: string): string {
+  return text
+    .replace(/\{color:#[A-Fa-f0-9]{3,6}\}(.+?)\{\/color\}/g, "$1")
+    .replace(/\{[^}]+\.(?:png|jpe?g|gif|webp|svg)\}/gi, "")
+    .replace(/\*\*(.+?)\*\*/g, "$1")
+    .replace(/\*(.+?)\*/g, "$1")
+    .replace(/~~(.+?)~~/g, "$1")
+    .trim();
+}
+
 export default function BookCard({ book }: { book: Book }) {
   return (
     <Link href={`/books/${book.id}`} className="group block">
@@ -57,7 +68,7 @@ export default function BookCard({ book }: { book: Book }) {
             className="line-clamp-3 text-sm leading-relaxed"
             style={{ color: Colors.TextSecondary }}
           >
-            {book.summary}
+            {stripMarkup(book.summary)}
           </p>
 
           {/* CTA */}

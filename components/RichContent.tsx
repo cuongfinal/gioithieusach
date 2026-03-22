@@ -94,7 +94,7 @@ export default function RichContent({ content }: { content: string }) {
   const lines = content.split("\n");
 
   return (
-    <div className="space-y-3 leading-relaxed" style={{ color: Colors.TextPrimary }}>
+    <div className="space-y-3 leading-relaxed text-justify" style={{ color: Colors.TextPrimary }}>
       {lines.map((line, i) => {
         const trimmed = line.trim();
         if (!trimmed) return <br key={i} />;

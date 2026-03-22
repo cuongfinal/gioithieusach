@@ -6,7 +6,7 @@
  *   "books"     — id | title | coverImage | summary | genre | publishYear | videoUrl
  *   "authors"   — bookId | name | portrait | bio
  *   "students"  — bookId | name | class | school | greeting
- *   "reviews"   — bookId | title | content
+ *   "reviews"   — bookId | title | precontent | content
  *   "resources" — bookId | label | url | type
  *   "about"     — key | value
  *   "team"      — name | role | avatar | className | school
@@ -125,6 +125,7 @@ export async function fetchBooksFromSheet(): Promise<Book[]> {
         },
         review: {
           title: review?.title || "",
+          precontent: review?.precontent || "",
           content: review?.content || "",
         },
         resources: res.map((r) => ({

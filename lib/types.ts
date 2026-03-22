@@ -19,6 +19,7 @@ export interface Resource {
 
 export interface BookReview {
   title: string;
+  precontent: string;
   content: string;
 }
 

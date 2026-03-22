@@ -30,15 +30,13 @@ export default async function HomePage() {
             className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl"
             style={{ color: Colors.White }}
           >
-            Góc Sách Hay
+            Tri thức từ những trang sách
           </h1>
           <p
             className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed"
             style={{ color: "rgba(255,255,255,0.9)" }}
           >
-            Khám phá thế giới sách cùng chúng mình! Đây là nơi chúng mình chia
-            sẻ những cuốn sách hay nhất, giúp bạn tìm được cuốn sách yêu thích
-            tiếp theo.
+            Chào mừng bạn đến với góc sách nhỏ của mình! Hãy cùng mình khám phá những tác phẩm thú vị và tìm ra cuốn sách chân ái của bạn nhé!
           </p>
           <div
             className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
