@@ -10,6 +10,7 @@ export enum Colors {
   PrimaryLight = "#F2A3AB",
   PrimaryDark = "#C9525E",
 
+
   // Secondary palette — Olive green
   Secondary = "#AFD275",
   SecondaryLight = "#C8E19E",
