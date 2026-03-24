@@ -131,7 +131,7 @@ export async function fetchBooksFromSheet(): Promise<Book[]> {
         resources: res.map((r) => ({
           label: r.label || "",
           url: r.url || "",
-          type: (r.type || "other") as "drive" | "video" | "document" | "other",
+          type: (r.type || "other") as "drive" | "video" | "document" | "doc" | "other",
         })),
       };
     });

@@ -8,6 +8,7 @@ const resourceIcons: Record<string, string> = {
   video: "🎬",
   document: "📄",
   book: "📖",
+  doc: "📝",
   other: "🔗",
 };
 
