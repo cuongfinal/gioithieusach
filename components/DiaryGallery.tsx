@@ -9,18 +9,18 @@ export default function DiaryGallery({ images }: { images: DiaryImage[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className="columns-2 gap-3 sm:columns-3">
         {images.map((img, index) => (
           <figure
             key={index}
-            className="cursor-pointer overflow-hidden rounded-xl"
+            className="mb-3 cursor-pointer overflow-hidden rounded-xl break-inside-avoid"
             onClick={() => setSelected(index)}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={img.url}
               alt={img.caption || `Nhật ký ${index + 1}`}
-              className="aspect-[2/3] w-full rounded-lg object-cover transition-transform duration-200 hover:scale-105"
+              className="w-full rounded-lg object-cover transition-transform duration-200 hover:scale-105"
             />
             {img.caption && (
               <figcaption
