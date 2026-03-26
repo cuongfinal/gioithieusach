@@ -1,5 +1,7 @@
 import { Colors } from "@/lib/colors";
 import { getAboutData } from "@/lib/data";
+import SectionTitle from "@/components/SectionTitle";
+import AboutGallery from "@/components/AboutGallery";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,126 +14,153 @@ export default async function AboutPage() {
 
   return (
     <div style={{ backgroundColor: Colors.Background }}>
-      {/* Hero */}
-      <section
-        className="relative overflow-hidden py-16"
-        style={{
-          background: `linear-gradient(135deg, ${Colors.GradientWarmStart}, ${Colors.GradientWarmEnd})`,
-        }}
-      >
-        <div
-          className="absolute -left-16 -top-16 h-56 w-56 rounded-full opacity-20"
-          style={{ backgroundColor: Colors.Accent }}
-        />
-        <div className="relative mx-auto max-w-4xl px-6 text-center">
-          <span className="mb-4 inline-block text-5xl">🌟</span>
-          <h1
-            className="mb-4 text-3xl font-extrabold md:text-4xl"
-            style={{ color: Colors.White }}
-          >
-            {about.title}
-          </h1>
-          <p
-            className="mx-auto max-w-2xl leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.9)" }}
-          >
-            {about.description}
-          </p>
-        </div>
-      </section>
+      <div className="mx-auto max-w-4xl space-y-8 px-6 py-12">
+        {/* Thông tin cá nhân */}
+        {about.team[0] && (() => {
+          const member = about.team[0];
+          const gradient = `linear-gradient(135deg, ${Colors.Primary}, ${Colors.GradientEnd})`;
+          return (
+            <div
+              className="overflow-hidden rounded-2xl"
+              style={{
+                backgroundColor: Colors.White,
+                boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
+              }}
+            >
+              <div
+                className="relative flex items-end px-6 pb-16 pt-10"
+                style={{ background: gradient }}
+              >
+                <h1
+                  className="text-2xl font-extrabold md:text-3xl"
+                  style={{ color: Colors.White }}
+                >
+                  {about.title}
+                </h1>
+              </div>
+              <div className="relative px-6 pb-6">
+                <div
+                  className="-mt-10 mb-4 flex h-20 w-20 items-center justify-center rounded-full text-3xl shadow-lg"
+                  style={{
+                    background: gradient,
+                    border: `4px solid ${Colors.White}`,
+                  }}
+                >
+                  🧑‍🎓
+                </div>
+                <h3
+                  className="text-xl font-bold"
+                  style={{ color: Colors.TextPrimary }}
+                >
+                  {member.name}
+                </h3>
+                <p
+                  className="mt-1 text-sm font-medium"
+                  style={{ color: Colors.Primary }}
+                >
+                  {member.role}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <span
+                    className="rounded-full px-4 py-1.5 text-xs font-medium"
+                    style={{
+                      backgroundColor: `${Colors.Primary}15`,
+                      color: Colors.Primary,
+                    }}
+                  >
+                    Lớp {member.className}
+                  </span>
+                  <span
+                    className="rounded-full px-4 py-1.5 text-xs font-medium"
+                    style={{
+                      backgroundColor: `${Colors.Secondary}20`,
+                      color: Colors.SecondaryDark,
+                    }}
+                  >
+                    {member.school}
+                  </span>
+                </div>
+                {about.description && (
+                  <p
+                    className="mt-4 text-sm leading-relaxed text-justify"
+                    style={{ color: Colors.TextSecondary }}
+                  >
+                    {about.description}
+                  </p>
+                )}
+              </div>
+            </div>
+          );
+        })()}
 
-      <div className="mx-auto max-w-4xl space-y-12 px-6 py-12">
-        {/* Mission */}
+        {/* Thông điệp gửi đến bạn */}
         <section
-          className="rounded-2xl p-8 text-center"
+          className="rounded-2xl p-6"
           style={{
             backgroundColor: Colors.Surface,
             boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
           }}
         >
-          <span className="mb-4 inline-block text-4xl">🎯</span>
-          <h2
-            className="mb-4 text-xl font-bold"
-            style={{ color: Colors.TextPrimary }}
-          >
-            Thông điệp gửi đến bạn
-          </h2>
+          <SectionTitle icon="🎯" title="Thông điệp gửi đến bạn" />
           <p
-            className="mx-auto max-w-2xl leading-relaxed"
+            className="leading-relaxed text-justify"
             style={{ color: Colors.TextSecondary }}
           >
             {about.mission}
           </p>
         </section>
 
-        {/* Team */}
-        <section>
-          <h2
-            className="mb-8 text-center text-2xl font-bold"
-            style={{ color: Colors.TextPrimary }}
+        {/* Thành tích học tập */}
+        {about.team[0]?.achievements && (
+          <section
+            className="rounded-2xl p-6"
+            style={{
+              backgroundColor: Colors.Surface,
+              boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
+            }}
           >
-            Tác giả Blog
-          </h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {about.team.map((member, index) => {
-              const gradients = [
-                `linear-gradient(135deg, ${Colors.Primary}, ${Colors.GradientEnd})`,
-                `linear-gradient(135deg, ${Colors.Secondary}, ${Colors.Warm})`,
-                `linear-gradient(135deg, ${Colors.Tertiary}, ${Colors.Primary})`,
-                `linear-gradient(135deg, ${Colors.Warm}, ${Colors.Accent})`,
-              ];
-              return (
-                <div
-                  key={index}
-                  className="overflow-hidden rounded-2xl"
-                  style={{
-                    backgroundColor: Colors.Surface,
-                    boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
-                  }}
-                >
-                  {/* Colored top bar */}
-                  <div
-                    className="h-2"
-                    style={{
-                      background: gradients[index % gradients.length],
-                    }}
-                  />
-                  <div className="flex items-center gap-4 p-6">
-                    {/* Avatar placeholder */}
-                    <div
-                      className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full text-2xl"
-                      style={{
-                        background: gradients[index % gradients.length],
-                      }}
-                    >
-                      🧑‍🎓
-                    </div>
-                    <div>
-                      <h3
-                        className="text-base font-bold"
-                        style={{ color: Colors.TextPrimary }}
-                      >
-                        {member.name}
-                      </h3>
-                      <p
-                        className="text-sm font-medium"
-                        style={{ color: Colors.Primary }}
-                      >
-                        {member.role}
-                      </p>
-                      <p
-                        className="mt-1 text-xs"
-                        style={{ color: Colors.TextSecondary }}
-                      >
-                        Lớp {member.className} · {member.school}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+            <SectionTitle icon="🏆" title="Thành tích học tập" />
+            <p
+              className="text-sm leading-relaxed"
+              style={{ color: Colors.TextSecondary }}
+            >
+              {about.team[0].achievements}
+            </p>
+          </section>
+        )}
+
+        {/* Sở thích */}
+        {about.team[0]?.hobbies && (
+          <section
+            className="rounded-2xl p-6"
+            style={{
+              backgroundColor: Colors.Surface,
+              boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
+            }}
+          >
+            <SectionTitle icon="💖" title="Sở thích" />
+            <p
+              className="text-sm leading-relaxed"
+              style={{ color: Colors.TextSecondary }}
+            >
+              {about.team[0].hobbies}
+            </p>
+          </section>
+        )}
+
+        {/* Hình ảnh */}
+        {about.images.length > 0 && (
+          <section
+            className="rounded-2xl p-6"
+            style={{
+              backgroundColor: Colors.Surface,
+              boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
+            }}
+          >
+            <SectionTitle icon="📸" title="Hình ảnh" />
+            <AboutGallery images={about.images} />
+          </section>
+        )}
       </div>
     </div>
   );

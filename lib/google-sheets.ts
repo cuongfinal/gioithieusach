@@ -8,8 +8,10 @@
  *   "students"  — bookId | name | class | school | greeting
  *   "reviews"   — bookId | title | precontent | content
  *   "resources" — bookId | label | url | type
+ *   "diary"     — bookId | url | caption
  *   "about"     — key | value
- *   "team"      — name | role | avatar | className | school
+ *   "team"      — name | role | avatar | className | school | hobbies | achievements
+ *   "about_images" — url | caption
  */
 
 const SHEET_ID = process.env.GOOGLE_SHEET_ID ?? "";
@@ -80,13 +82,14 @@ function groupBy(rows: Row[], key: string): Map<string, Row[]> {
 import type { Book, AboutData } from "@/lib/types";
 
 export async function fetchBooksFromSheet(): Promise<Book[]> {
-  const [bookRows, authorRows, studentRows, reviewRows, resourceRows] =
+  const [bookRows, authorRows, studentRows, reviewRows, resourceRows, diaryRows] =
     await Promise.all([
       fetchSheet("books"),
       fetchSheet("authors"),
       fetchSheet("students"),
       fetchSheet("reviews"),
       fetchSheet("resources"),
+      fetchSheet("diary"),
     ]);
 
   if (bookRows.length === 0) return [];
@@ -95,6 +98,7 @@ export async function fetchBooksFromSheet(): Promise<Book[]> {
   const students = new Map(studentRows.map((r) => [r.bookId, r]));
   const reviews = new Map(reviewRows.map((r) => [r.bookId, r]));
   const resources = groupBy(resourceRows, "bookId");
+  const diaries = groupBy(diaryRows, "bookId");
 
   return bookRows
     .filter((row) => row.id)
@@ -103,6 +107,7 @@ export async function fetchBooksFromSheet(): Promise<Book[]> {
       const student = students.get(row.id);
       const review = reviews.get(row.id);
       const res = resources.get(row.id) ?? [];
+      const diary = diaries.get(row.id) ?? [];
 
       return {
         id: row.id,
@@ -128,6 +133,10 @@ export async function fetchBooksFromSheet(): Promise<Book[]> {
           precontent: review?.precontent || "",
           content: review?.content || "",
         },
+        diary: diary.map((d) => ({
+          url: d.url || "",
+          caption: d.caption || "",
+        })),
         resources: res.map((r) => ({
           label: r.label || "",
           url: r.url || "",
@@ -138,9 +147,10 @@ export async function fetchBooksFromSheet(): Promise<Book[]> {
 }
 
 export async function fetchAboutFromSheet(): Promise<AboutData | null> {
-  const [aboutRows, teamRows] = await Promise.all([
+  const [aboutRows, teamRows, imageRows] = await Promise.all([
     fetchSheet("about"),
     fetchSheet("team"),
+    fetchSheet("about_images"),
   ]);
 
   if (aboutRows.length === 0 && teamRows.length === 0) return null;
@@ -162,6 +172,14 @@ export async function fetchAboutFromSheet(): Promise<AboutData | null> {
         avatar: row.avatar || "",
         className: row.className || "",
         school: row.school || "",
+        hobbies: row.hobbies || "",
+        achievements: row.achievements || "",
+      })),
+    images: imageRows
+      .filter((row) => row.url)
+      .map((row) => ({
+        url: row.url,
+        caption: row.caption || "",
       })),
   };
 }

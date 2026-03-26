@@ -8,28 +8,37 @@
       "role": "Trưởng nhóm & Biên tập viên",
       "avatar": "/images/team/an.jpg",
       "className": "7A1",
-      "school": "Trường THCS Nguyễn Du"
+      "school": "Trường THCS Nguyễn Du",
+      "hobbies": "",
+      "achievements": ""
     },
     {
       "name": "Trần Thị Bích",
       "role": "Thiết kế & Sáng tạo nội dung",
       "avatar": "/images/team/bich.jpg",
       "className": "7A2",
-      "school": "Trường THCS Nguyễn Du"
+      "school": "Trường THCS Nguyễn Du",
+      "hobbies": "",
+      "achievements": ""
     },
     {
       "name": "Lê Minh Châu",
       "role": "Quay phim & Dựng video",
       "avatar": "/images/team/chau.jpg",
       "className": "7A1",
-      "school": "Trường THCS Nguyễn Du"
+      "school": "Trường THCS Nguyễn Du",
+      "hobbies": "",
+      "achievements": ""
     },
     {
       "name": "Phạm Đức Dũng",
       "role": "Nghiên cứu & Tổng hợp tài liệu",
       "avatar": "/images/team/dung.jpg",
       "className": "7A3",
-      "school": "Trường THCS Nguyễn Du"
+      "school": "Trường THCS Nguyễn Du",
+      "hobbies": "",
+      "achievements": ""
     }
-  ]
+  ],
+  "images": []
 }

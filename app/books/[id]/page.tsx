@@ -5,6 +5,7 @@ import { getBookById, getBooks } from "@/lib/data";
 import SectionTitle from "@/components/SectionTitle";
 import ResourceLink from "@/components/ResourceLink";
 import RichContent from "@/components/RichContent";
+import DiaryGallery from "@/components/DiaryGallery";
 
 export async function generateStaticParams() {
   const books = await getBooks();
@@ -229,6 +230,20 @@ export default async function BookDetailPage({
           >
             <SectionTitle icon="💡" title="Thông điệp của cuốn sách" />
             <RichContent content={book.review.precontent} />
+          </section>
+        )}
+
+        {/* Diary — Nhật ký đọc sách */}
+        {book.diary.length > 0 && (
+          <section
+            className="rounded-2xl p-6"
+            style={{
+              backgroundColor: Colors.Surface,
+              boxShadow: `0 2px 15px ${Colors.ShadowColor}`,
+            }}
+          >
+            <SectionTitle icon="📔" title="Nhật ký đọc sách của em" />
+            <DiaryGallery images={book.diary} />
           </section>
         )}
 

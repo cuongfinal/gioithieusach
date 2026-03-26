@@ -23,6 +23,11 @@ export interface BookReview {
   content: string;
 }
 
+export interface DiaryImage {
+  url: string;
+  caption: string;
+}
+
 export interface Book {
   id: string;
   title: string;
@@ -32,6 +37,7 @@ export interface Book {
   student: StudentInfo;
   videoUrl: string;
   review: BookReview;
+  diary: DiaryImage[];
   resources: Resource[];
   genre: string;
   publishYear: number;
@@ -43,6 +49,13 @@ export interface TeamMember {
   avatar: string;
   className: string;
   school: string;
+  hobbies: string;
+  achievements: string;
+}
+
+export interface AboutImage {
+  url: string;
+  caption: string;
 }
 
 export interface AboutData {
@@ -50,4 +63,5 @@ export interface AboutData {
   description: string;
   mission: string;
   team: TeamMember[];
+  images: AboutImage[];
 }
