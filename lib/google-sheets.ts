@@ -79,7 +79,7 @@ function groupBy(rows: Row[], key: string): Map<string, Row[]> {
   return map;
 }
 
-import type { Book, AboutData } from "@/lib/types";
+import type { Book, AboutData, Resource } from "@/lib/types";
 
 export async function fetchBooksFromSheet(): Promise<Book[]> {
   const [bookRows, authorRows, studentRows, reviewRows, resourceRows, diaryRows] =
@@ -140,7 +140,7 @@ export async function fetchBooksFromSheet(): Promise<Book[]> {
         resources: res.map((r) => ({
           label: r.label || "",
           url: r.url || "",
-          type: (r.type || "other") as "drive" | "video" | "document" | "doc" | "other",
+          type: (r.type || "other") as Resource["type"],
         })),
       };
     });

@@ -167,7 +167,11 @@ export default async function BookDetailPage({
             <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
               <iframe
                 className="absolute inset-0 h-full w-full"
-                src={book.videoUrl}
+                src={book.videoUrl.includes("watch?v=")
+                  ? book.videoUrl.replace(/watch\?v=/, "embed/")
+                  : book.videoUrl.includes("youtu.be/")
+                  ? book.videoUrl.replace(/youtu\.be\//, "www.youtube.com/embed/")
+                  : book.videoUrl}
                 title={`Video giới thiệu ${book.title}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

@@ -14,7 +14,7 @@ export interface StudentInfo {
 export interface Resource {
   label: string;
   url: string;
-  type: "drive" | "video" | "document" | "book" | "doc" | "other";
+  type: "drive" | "video" | "document" | "book" | "doc" | "diary" | "padlet" | "other";
 }
 
 export interface BookReview {

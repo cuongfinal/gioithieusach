@@ -9,6 +9,8 @@ const resourceIcons: Record<string, string> = {
   document: "📄",
   book: "📖",
   doc: "📝",
+  diary: "📔",
+  padlet: "🧩",
   other: "🔗",
 };
 
